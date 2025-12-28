@@ -7,15 +7,27 @@ categories:
 ---
 
 
-## iframe insert youtube video
+
+{{< callout >}}
+  iframe is a html element that allows you to embed another html document within the current document.
+{{< /callout >}}
 
 
-<iframe width="680" height="452" src="https://www.youtube.com/embed/s4BibernJxU" title="What Is an iFrame? (And How to Use Them)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{% steps %}}
 
+### iframe 1
+ iframe insert youtube video
 
-## iframe with local reveal presentation html file
+<iframe width=100% height=500px src="https://www.youtube.com/embed/s4BibernJxU" title="What Is an iFrame? (And How to Use Them)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+### iframe 2
+
+ iframe with local reveal presentation html file
 <!-- 将本地 HTML 放入 static/，Hugo 会原样发布，路径从站点根开始 -->
-<iframe src="/coding/index.html" width="680" height="452"></iframe>
+<iframe width=100% height=500px src="/coding/index.html" ></iframe>
+
+
+{{% /steps %}}
+
 
 
