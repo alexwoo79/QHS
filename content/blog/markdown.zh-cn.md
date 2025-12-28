@@ -151,6 +151,43 @@ func main() {
 | 标题      | 标题文本     |
 | 段落      | 正文内容     |
 
+
+## 公式输入
+
+$$F(\omega) = \int_{-\infty}^{\infty} f(t)\, e^{-j \omega t} \, dt$$
+
+$$
+\begin{aligned}
+  \nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \\
+  \nabla \cdot \mathbf{B} &= 0 \\
+  \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+  \nabla \times \mathbf{B} &= \mu_0 \left( \mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} \right)
+\end{aligned}
+$$
+$$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
+
+## tab页面
+{{< tabs items="JSON,YAML,TOML" defaultIndex="1" >}}
+
+  {{< tab >}}**JSON**: JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.{{< /tab >}}
+  {{< tab >}}**YAML**: YAML is a human-readable data serialization language.{{< /tab >}}
+  {{< tab >}}**TOML**: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics.{{< /tab >}}
+
+{{< /tabs >}}
+
+
+## Mermaid
+```mermaid
+sequenceDiagram
+Alice->>John: Hello John, how are you?
+loop HealthCheck
+    John->>John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John-->>Alice: Great!
+John->>Bob: How about you?
+Bob-->>John: Jolly good!
+```
 ## 参考资料
 
 - [Markdown 语法](https://www.markdownguide.org/basic-syntax/)
