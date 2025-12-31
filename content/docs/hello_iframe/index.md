@@ -1,7 +1,7 @@
 ---
 title: Hello, iframe
 date: '2025-12-28'
-categories:
+tags:
   - reveal
   - iframe
 ---
@@ -15,16 +15,16 @@ categories:
 
 
 
-### iframe 1
+### iframe 1 (使用新的iframe短代码)
  iframe insert youtube video
 
-<iframe width=100% height=500px src="https://www.youtube.com/embed/s4BibernJxU" title="What Is an iFrame? (And How to Use Them)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< iframe url="https://www.youtube.com/embed/s4BibernJxU" width="100%" height="500px" title="What Is an iFrame? (And How to Use Them)" >}}
 
-### iframe 2
+### iframe 2 (使用新的iframe短代码)
 
  iframe with local reveal presentation html file
 <!-- 将本地 HTML 放入 static/，Hugo 会原样发布，路径从站点根开始 -->
-<iframe width=100% height=500px src="/coding/index.html" ></iframe>
+{{< iframe url="../../coding/index.html" width="100%" height="500px" title="Local Reveal Presentation" >}}
 
 
 
