@@ -38,7 +38,7 @@ Shortcode to include an iframe with fullscreen capability.
           title="全屏显示">
     ⛶ 全屏
   </button>
-  <iframe src="{{ $url }}"
+  <iframe src="{{ $url | relURL }}"
           width="{{ $width }}"
           height="{{ $height }}"
           frameborder="0"
