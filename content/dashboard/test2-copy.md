@@ -6,4 +6,4 @@ tags:
   - iframe
 ---
 
-{{< iframe src="../../dashboard/dashboard.html" >}}
+{{< iframe url="../../dashboard/dashboard.html" >}}
