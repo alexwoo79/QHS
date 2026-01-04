@@ -9,7 +9,8 @@
 }
 
 .hextra-pdf iframe {
-  min-height: 600px; /* 自定义高度 */
+  min-height: 600px;
+  /* 自定义高度 */
   width: 100%;
   border: none;
   display: block;
@@ -161,15 +162,16 @@
   border-radius: 8px;
   padding: 1.5rem;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
-  height: 400px; /* 固定高度 */
+  height: 400px;
+  /* 固定高度 */
 }
 
 .dashboard-list-item:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
@@ -240,7 +242,8 @@
 /* 使用padding-top技巧创建固定宽高比 */
 .dashboard-list-item-content {
   height: 0;
-  padding-top: 70%; /* 4:3 宽高比 - 可根据需要调整 */
+  padding-top: 70%;
+  /* 4:3 宽高比 - 可根据需要调整 */
 }
 
 .dashboard-list-item-content iframe {
@@ -254,3 +257,79 @@
   padding: 0;
   border-radius: 4px;
 }
+
+/* =========================
+   Table (Markdown / CSV)
+   ========================= */
+
+.custom-table-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem auto;
+  overflow: hidden;
+  padding: 0;
+}
+
+.custom-table-container table {
+  width: 100% !important;
+  min-width: 100% !important;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid #e5e7eb;
+  table-layout: auto;
+  display: table !important;
+  overflow-x: visible;
+}
+
+.custom-table-container th {
+  background-color: rgb(202, 199, 248);
+  color: #333333;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.custom-table-container thead tr:hover th {
+  background-color: #a5a0f4;
+}
+
+.custom-table-container td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  color: #333333;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.custom-table-container tr:nth-child(even) {
+  background-color: rgb(236, 236, 252);
+}
+
+.custom-table-container tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.custom-table-container tbody tr:hover td {
+  background-color: rgb(202, 199, 248);
+  transition: background-color 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .custom-table-container {
+      margin: 0.75rem auto;
+      padding: 0 0.5rem;
+  }
+  .custom-table-container table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      max-width: calc(100% - 1rem);
+  }
+}
+
+
+
+

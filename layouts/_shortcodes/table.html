@@ -1,0 +1,13 @@
+
+{{/*
+用法：
+{{< table >}}              → left
+{{< table "center" >}}     → center
+{{< table "right" >}}      → right
+*/}}
+
+
+<div class="custom-table-container">
+{{ $tableContent := .Inner | replaceRE "^\\s*\\n" "" | replaceRE "\\n\\s*$" "" }}
+{{ $tableContent | markdownify }}
+</div>

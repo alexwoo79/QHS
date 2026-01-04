@@ -1,0 +1,57 @@
+{{/* layouts/_shortcodes/csv-table.html */}}
+
+{{ $file := .Get 0 }}
+{{ if not $file }}
+  {{ errorf "csv-table requires a filename: {{< csv-table \"sample.csv\" >}}" }}
+{{ end }}
+
+{{ $res := resources.Get (printf "data/%s" $file) }}
+{{ if not $res }}
+  {{ errorf "CSV file not found in assets/data/: %s" $file }}
+{{ end }}
+
+{{ $rows := transform.Unmarshal $res }}
+
+{{ if not (reflect.IsSlice $rows) }}
+  {{ errorf "CSV did not unmarshal into rows: %T" $rows }}
+{{ end }}
+
+{{ if lt (len $rows) 1 }}
+  {{ errorf "CSV is empty: %s" $file }}
+{{ end }}
+
+{{ $header := index $rows 0 }}
+{{ $rowCount := len $rows }}
+{{ $dataCount := sub (len $rows) 1 }}
+{{ $maxRows := 50 }}
+
+{{ if gt $dataCount $maxRows }}
+<p class="table-note">
+  仅显示前 {{ $maxRows }} 行，共 {{ $dataCount }} 行数据
+</p>
+{{ end }}
+
+
+{{ $maxRows := 50 }}
+
+<div class="custom-table-container">
+  <table class="content-table">
+    <thead>
+      <tr>
+        {{ range $header }}
+          <th>{{ . }}</th>
+        {{ end }}
+      </tr>
+    </thead>
+    <tbody>
+      {{ range first $maxRows (after 1 $rows) }}
+      <tr>
+        {{ range . }}
+          <td>{{ . }}</td>
+        {{ end }}
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
+
