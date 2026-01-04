@@ -6,4 +6,4 @@ tags:
   - iframe
 ---
 
-{{< iframe url="../../dashboard/dashboard.html" >}}
+this is empty page

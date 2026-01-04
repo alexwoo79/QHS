@@ -167,11 +167,11 @@ $$
 $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
 
 ## tab页面
-{{< tabs items="JSON,YAML,TOML" defaultIndex="1" >}}
+{{< tabs >}}
 
-  {{< tab >}}**JSON**: JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.{{< /tab >}}
-  {{< tab >}}**YAML**: YAML is a human-readable data serialization language.{{< /tab >}}
-  {{< tab >}}**TOML**: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics.{{< /tab >}}
+  {{< tab name="JSON" >}}**JSON**: JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.{{< /tab >}}
+  {{< tab name="YAML" selected="true" >}}**YAML**: YAML is a human-readable data serialization language.{{< /tab >}}
+  {{< tab name="TOML" >}}**TOML**: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics.{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -192,3 +192,32 @@ Bob-->>John: Jolly good!
 
 - [Markdown 语法](https://www.markdownguide.org/basic-syntax/)
 - [Hugo Markdown](https://gohugo.io/content-management/formats/#markdown)
+
+
+## emoji
+
+:heart:
+
+H1 `===`
+===
+
+H2 `---`
+---
+
+## line
+`***` or `___`
+***
+___
+
+## checkbox 
+
+- [ ] 未完成任务
+- [x] 已完成任务
+
+## Blockquote
+
+```markdown
+> 这是一个引用块。
+```
+
+> 这是一个引用块。
