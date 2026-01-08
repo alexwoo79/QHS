@@ -115,28 +115,19 @@
     if (MODEL_SRC.startsWith("http://") || MODEL_SRC.startsWith("https://")) {
         // 如果是完整 URL，直接使用
         console.log('Debug: Using full URL for model');
-    } else if (MODEL_SRC.startsWith("/")) {
-        // 如果是绝对路径（以 / 开头），需要处理
-        if (MODEL_SRC.startsWith("/bim/")) {
-            // 如果模型路径已经包含 /bim/，只需要确保前面有正确的 baseURL 前缀
-            // 例如：/bim/models/model.glb -> /qhs/bim/models/model.glb
-            const modelRelativePath = MODEL_SRC.substring(1); // 移除开头的 /
-            const baseURLPath = basePath.split("/bim/")[0]; // 获取 /bim/ 前面的部分
-            MODEL_SRC = baseURLPath + "/" + modelRelativePath;
-        } else {
-            // 其他绝对路径，拼接完整的 baseURL
-            MODEL_SRC = url.origin + basePath + MODEL_SRC.substring(1);
-        }
-        console.log('Debug: Updated MODEL_SRC (absolute path) =', MODEL_SRC);
     } else {
-        // 如果是相对路径，直接使用当前页面的基础路径拼接
-        MODEL_SRC = url.origin + basePath + MODEL_SRC;
-        console.log('Debug: Updated MODEL_SRC (relative path) =', MODEL_SRC);
-    }
-    
-    // 确保最终路径是完整的 URL
-    if (!MODEL_SRC.startsWith("http://") && !MODEL_SRC.startsWith("https://")) {
-        MODEL_SRC = url.origin + MODEL_SRC;
+        // 如果是相对路径或绝对路径，确保正确拼接 basePath
+        let modelPath = MODEL_SRC;
+        
+        // 移除开头的 / 以便正确拼接
+        if (modelPath.startsWith("/")) {
+            modelPath = modelPath.substring(1);
+        }
+        
+        // 使用 basePath 拼接模型路径
+        // basePath 已经包含了 /qhs/bim/ 这样的完整前缀
+        MODEL_SRC = url.origin + basePath + modelPath;
+        console.log('Debug: Updated MODEL_SRC =', MODEL_SRC);
     }
     
     console.log('Debug: Final MODEL_SRC =', MODEL_SRC);
