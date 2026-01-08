@@ -71,7 +71,7 @@
 
     console.log('Debug: viewer.html loaded');
     const params = new URLSearchParams(window.location.search);
-    const MODEL_SRC = params.get("model");
+    let MODEL_SRC = params.get("model");
     
     console.log('Debug: MODEL_SRC =', MODEL_SRC);
 
@@ -80,6 +80,66 @@
         console.error('Error: Missing model parameter');
         throw new Error("Missing model parameter");
     }
+
+    /* =========================
+       2️⃣ 处理模型路径，确保正确拼接 baseURL
+       ========================= */
+
+    // 获取当前页面的完整 URL
+    const currentURL = window.location.href;
+    console.log('Debug: currentURL =', currentURL);
+    
+    // 解析 URL 结构
+    const url = new URL(currentURL);
+    
+    // 获取当前页面的路径
+    const currentPath = url.pathname;
+    console.log('Debug: currentPath =', currentPath);
+    
+    // 提取 viewer.html 所在的目录路径作为基础路径
+    // 例如：如果当前路径是 /qhs/bim/viewer.html，则基础路径是 /qhs/bim/
+    const viewerIndex = currentPath.indexOf("/bim/viewer.html");
+    let basePath = "/";
+    
+    if (viewerIndex !== -1) {
+        // 提取到 viewer.html 所在目录的路径
+        basePath = currentPath.substring(0, viewerIndex + "/bim/".length);
+    } else {
+        // 如果找不到 /bim/viewer.html，则使用当前目录
+        basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
+    }
+    
+    console.log('Debug: basePath =', basePath);
+    
+    // 处理模型路径
+    if (MODEL_SRC.startsWith("http://") || MODEL_SRC.startsWith("https://")) {
+        // 如果是完整 URL，直接使用
+        console.log('Debug: Using full URL for model');
+    } else if (MODEL_SRC.startsWith("/")) {
+        // 如果是绝对路径（以 / 开头），需要处理
+        if (MODEL_SRC.startsWith("/bim/")) {
+            // 如果模型路径已经包含 /bim/，只需要确保前面有正确的 baseURL 前缀
+            // 例如：/bim/models/model.glb -> /qhs/bim/models/model.glb
+            const modelRelativePath = MODEL_SRC.substring(1); // 移除开头的 /
+            const baseURLPath = basePath.split("/bim/")[0]; // 获取 /bim/ 前面的部分
+            MODEL_SRC = baseURLPath + "/" + modelRelativePath;
+        } else {
+            // 其他绝对路径，拼接完整的 baseURL
+            MODEL_SRC = url.origin + basePath + MODEL_SRC.substring(1);
+        }
+        console.log('Debug: Updated MODEL_SRC (absolute path) =', MODEL_SRC);
+    } else {
+        // 如果是相对路径，直接使用当前页面的基础路径拼接
+        MODEL_SRC = url.origin + basePath + MODEL_SRC;
+        console.log('Debug: Updated MODEL_SRC (relative path) =', MODEL_SRC);
+    }
+    
+    // 确保最终路径是完整的 URL
+    if (!MODEL_SRC.startsWith("http://") && !MODEL_SRC.startsWith("https://")) {
+        MODEL_SRC = url.origin + MODEL_SRC;
+    }
+    
+    console.log('Debug: Final MODEL_SRC =', MODEL_SRC);
 
     /* =========================
        2️⃣ Viewer 初始化（原样保留）
