@@ -17,8 +17,22 @@ Shortcode to include an iframe with fullscreen capability.
     {{- /* 外部链接，直接使用 */ -}}
     {{- $url = $url | safeURL -}}
   {{- else -}}
-    {{- /* 站内资源：用 urls.JoinPath 自动拼接，避免双斜杠 */ -}}
-    {{- $url = urls.JoinPath $siteBaseURL $url | string | safeURL -}}
+    {{- /* 站内资源：处理查询字符串，避免 urls.JoinPath 编码 ? */ -}}
+    {{- $query := "" -}}
+    {{- $path := $url -}}
+    {{- /* 分离路径和查询字符串 */ -}}
+    {{- if in $url "?" -}}
+      {{- $parts := split $url "?" -}}
+      {{- $path = index $parts 0 -}}
+      {{- $query = index $parts 1 -}}
+    {{- end -}}
+    {{- /* 拼接路径部分 */ -}}
+    {{- $url = urls.JoinPath $siteBaseURL $path | string -}}
+    {{- /* 附加查询字符串 */ -}}
+    {{- if $query -}}
+      {{- $url = printf "%s?%s" $url $query -}}
+    {{- end -}}
+    {{- $url = $url | safeURL -}}
   {{- end -}}
 {{- else -}}
   {{- errorf "iframe shortcode requires 'url' or 'src' parameter: %s" .Position -}}
